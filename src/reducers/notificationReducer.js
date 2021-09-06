@@ -17,10 +17,6 @@ const reducer = (state=notificationInitialState, action) =>{
 
 //action creators
 export const notificationSet = (message, timeout)=>{
-    // return {
-    //     type:"SET",
-    //     data: message
-    // }
     return async (dispatch)=>{
         dispatch({
             type: "SET",
