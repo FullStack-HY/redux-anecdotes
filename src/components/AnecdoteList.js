@@ -13,9 +13,9 @@ const AnecdoteList = (props) => {
 
   const sortedAnecdotes = anecdotes.sort((a, b) => b.votes - a.votes);
 
-  const vote = (id) => {
-    console.log("vote", id);
-    dispatch(voteAnecdote(id));
+  const vote = (id, votes) => {
+    // console.log("vote", id);
+    dispatch(voteAnecdote(id, votes+1));
   };
 
   return (
@@ -25,7 +25,7 @@ const AnecdoteList = (props) => {
           <div>{anecdote.content}</div>
           <div>
             has {anecdote.votes}
-            <button onClick={() => vote(anecdote.id)}>vote</button>
+            <button onClick={() => vote(anecdote.id, anecdote.votes)}>vote</button>
           </div>
         </div>
       ))}

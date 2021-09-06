@@ -6,7 +6,7 @@ const reducer = (state=notificationInitialState, action) =>{
         case 'SET':{
             return action.data
         }
-        case 'REMOVE':{
+        case 'CLEAR':{
             return ""
         }
         default:{
@@ -16,16 +16,25 @@ const reducer = (state=notificationInitialState, action) =>{
 }
 
 //action creators
-export const notificationSet = (message)=>{
-    return {
-        type:"SET",
-        data: message
+export const notificationSet = (message, timeout)=>{
+    // return {
+    //     type:"SET",
+    //     data: message
+    // }
+    return async (dispatch)=>{
+        dispatch({
+            type: "SET",
+            data: message
+        })
+        setTimeout(()=>{
+            dispatch({ type: "CLEAR" })
+        }, timeout)
     }
 }
 
-export const notificationRemove = ()=>{
+export const clearNotification = ()=>{
     return {
-        type:"REMOVE"
+        type:"CLEAR"
     }
 }
 
