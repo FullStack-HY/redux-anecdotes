@@ -3,7 +3,7 @@
     {
       "content": "If it hurts, do it more often",
       "id": 1,
-      "votes": 5
+      "votes": 50
     },
     {
       "content": "Adding manpower to a late software project makes it later!",
@@ -52,7 +52,7 @@
     },
     {
       "content": "I like to grow silently, and demonstrate when the time is right",
-      "votes": 0,
+      "votes": 1,
       "id": 11
     },
     {
@@ -67,8 +67,18 @@
     },
     {
       "content": "Tomorrow is work day, let's go!",
-      "votes": 6,
+      "votes": 14,
       "id": 14
+    },
+    {
+      "content": "Building a start-up from the groun-up is hard",
+      "votes": 0,
+      "id": 15
+    },
+    {
+      "content": "becoming a proficient Frontend engineer is my goal",
+      "votes": 1,
+      "id": 16
     }
   ]
 }

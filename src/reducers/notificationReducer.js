@@ -1,5 +1,8 @@
-const notificationInitialState = "Welcome"
+const notificationInitialState = {
+    message: "Welcome",
+}
 
+let timeoutID;
 const reducer = (state=notificationInitialState, action) =>{
 
     switch(action.type){
@@ -7,7 +10,9 @@ const reducer = (state=notificationInitialState, action) =>{
             return action.data
         }
         case 'CLEAR':{
-            return ""
+            return {
+                message: '',
+            }
         }
         default:{
             return state
@@ -18,13 +23,16 @@ const reducer = (state=notificationInitialState, action) =>{
 //action creators
 export const notificationSet = (message, timeout)=>{
     return async (dispatch)=>{
-        dispatch({
-            type: "SET",
-            data: message
-        })
-        setTimeout(()=>{
+        if (timeoutID !== undefined){
+            clearTimeout(timeoutID)
+        }
+        timeoutID = setTimeout(()=>{
             dispatch({ type: "CLEAR" })
         }, timeout)
+        dispatch({
+            type: "SET",
+            data: {message}
+        })
     }
 }
 

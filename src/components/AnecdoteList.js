@@ -1,6 +1,7 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, connect } from "react-redux";
 import { voteAnecdote } from "../reducers/anecdoteReducer";
+import { notificationSet } from 'reducers/notificationReducer';
 
 const AnecdoteList = (props) => {
   const anecdotes = useSelector((state) => {
@@ -9,12 +10,13 @@ const AnecdoteList = (props) => {
     }
     return state.anecdotes
   });
-  const dispatch = useDispatch();
 
   const sortedAnecdotes = anecdotes.sort((a, b) => b.votes - a.votes);
 
   const vote = (id, votes) => {
-    dispatch(voteAnecdote(id, votes+1));
+    let votedAnecdote = anecdotes.find(anecdote => anecdote.id === id);
+    props.voteAnecdote(id, votes+1);
+    props.notificationSet(`+1 vote for ${votedAnecdote.content}`, 5000);
   };
 
   return (
@@ -32,4 +34,13 @@ const AnecdoteList = (props) => {
   );
 };
 
-export default AnecdoteList;
+const mapDispatchToProps = {
+  notificationSet,
+  voteAnecdote
+}
+
+const ConnectedAnecdoteList = connect(
+  null,
+  mapDispatchToProps
+)(AnecdoteList)
+export default ConnectedAnecdoteList;
